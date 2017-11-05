@@ -1,1 +1,1 @@
-# mern_stack_user_dashboard
+# MERN Stack - Basic User Dashboard

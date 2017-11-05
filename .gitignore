@@ -1,0 +1,4 @@
+app/node_modules/
+app/firefox_root/
+app/bin/
+npm-debug.log

@@ -1,0 +1,69 @@
+{
+  "name": "urbn_front_end_code_challange",
+  "version": "1.0.0",
+  "description": "front end code challange",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --config ./etc/webpack.config.js --env.NODE_ENV=development",
+    "build": "webpack --config ./etc/webpack.config.js --env.NODE_ENV=production --progress"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/speaud/urbn_front_end_code_challange.git"
+  },
+  "author": "Joshua Mummert",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/speaud/urbn_front_end_code_challange/issues"
+  },
+  "homepage": "https://github.com/speaud/urbn_front_end_code_challange#readme",
+  "dependencies": {
+    "axios": "^0.17.0",
+    "es6-promise": "^4.1.1",
+    "isomorphic-fetch": "^2.2.1",
+    "prop-types": "^15.6.0",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-hot-loader": "^3.1.1",
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.25.0",
+    "babel-loader": "^7.1.1",
+    "babel-plugin-transform-es2015-spread": "^6.22.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^0.28.4",
+    "html-minifier": "^3.5.6",
+    "html-webpack-plugin": "^2.30.1",
+    "node-sass": "^4.5.3",
+    "redux-devtools": "^3.4.0",
+    "redux-devtools-dock-monitor": "^1.1.2",
+    "redux-devtools-log-monitor": "^1.3.0",
+    "redux-logger": "^3.0.6",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.18.2",
+    "uglifyjs-webpack-plugin": "^1.0.0-beta.3",
+    "webpack": "^3.3.0",
+    "webpack-dev-server": "^2.5.1"
+  },
+  "babel": {
+    "presets": [
+      [
+        "env",
+        {
+          "modules": false
+        }
+      ],
+      "react"
+    ],
+    "plugins": [
+      "transform-object-rest-spread",
+      "transform-es2015-spread"
+    ]
+  }
+}
