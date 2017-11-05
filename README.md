@@ -6,7 +6,7 @@
 * Redux
 
 ##### NPM Packages
-...
+* [Redux Forms](https://redux-form.com/)
 
 ##### Developer Tools
 * [Redux Dev Tools](https://github.com/gaearon/redux-devtools)
