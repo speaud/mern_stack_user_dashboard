@@ -45,10 +45,15 @@ mongoose.connection.on('error', (err) => {
 //  src: path.join(__dirname, 'public'),
 //  dest: path.join(__dirname, 'public')
 //}));
+
 app.use(logger('dev'));
 
+
+// Permit the app to parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
+// Use body-parser as middleware for the app
 app.use(bodyParser.json());
+
 
 //app.use(expressValidator());
 //app.use(session({
@@ -136,8 +141,50 @@ router.use(function(req, res, next) {
 
 // Test route to make sure everything is working
 router.get('/test', function(req, res) {
-  res.json({ message: 'test' });  
+  res.json({ message: 'test' });
 });
+
+
+var User = require('./models/user');
+
+//router.route('/user(/:user_id)?')
+//router.route(['/user', '/user/id/'])
+router.route('/user')
+  //.get((req, res) => {
+  //  console.log(req.body)
+  //  res.json({ message: '/user/:user_id' });
+  //})
+  .post((req, res) => {
+
+    console.log(req.body)
+
+    var user = new User({
+      first_name: req.body.first_name,
+      last_name: req.body.last_name,
+      email: req.body.email
+    });
+
+    user.save(function(err) {
+      if (err) {
+        res.send(err);
+      }
+
+      res.json({ message: 'User created!' });
+    });
+
+  })
+  //.put((req, res) => {})
+  //.delete('/:user_id', (req, res) => {});
+
+
+
+
+
+
+
+
+
+
 
 
 

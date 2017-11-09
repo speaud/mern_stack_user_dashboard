@@ -49,6 +49,26 @@ export const testApiPost = (arg) => dispatch => {
 
 
 
+export const testUserPost = (obj) => dispatch => {
+// testApiPost
+ console.log("testUserPost ")
+ console.log(obj)
+
+    axios.post('/api/user', {
+        first_name: obj.firstName,
+        last_name: obj.lastName,
+        email: obj.email
+    })
+        .then(function (response) {
+            console.log(response.data);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+};
+
+
+
 
 
 //export const queryAction = (arg) => dispatch => {

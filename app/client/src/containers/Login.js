@@ -5,7 +5,7 @@ import ContactForm from '../components/Form'
 import { api } from '../../api/'
 //import SyncValidationForm from '../components/SyncValidationForm'
 
-import { testApi, testApiPost } from '../actions/'
+import { testApi, testUserPost } from '../actions/'
 
 class QueryForm extends Component {
   constructor(props){
@@ -24,7 +24,7 @@ class QueryForm extends Component {
     console.log("submit - values")
     console.log(values)
 
-    this.props.testApiPost(values.firstName)
+    this.props.testUserPost(values)
   }
 
 
@@ -57,7 +57,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     testApi,
-    testApiPost
+    testUserPost
   },dispatch)
 }
 
