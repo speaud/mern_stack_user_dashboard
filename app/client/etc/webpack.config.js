@@ -46,6 +46,9 @@ module.exports = env => {
               }
             }),
             new webpack.HotModuleReplacementPlugin(),
+            //new webpack.HotModuleReplacementPlugin({
+            //    multistep: true // Build in two steps - first compiling the hot update chunks, and then the remaining normal assets
+            //}),
             new UglifyJSPlugin(/* No need to enable Parallelization or chucking for an app this small */)    
         ]
     }

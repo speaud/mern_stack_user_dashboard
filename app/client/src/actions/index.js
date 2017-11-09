@@ -32,6 +32,22 @@ export const testApi = () => dispatch => {
 };
 
 
+export const testApiPost = (arg) => dispatch => {
+// testApiPost
+ console.log("testApiPost = " + arg)
+
+    axios.post('/api/bears', {
+        name: arg
+    })
+        .then(function (response) {
+            console.log(response.data);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+};
+
+
 
 
 

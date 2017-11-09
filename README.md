@@ -22,9 +22,11 @@ _NOTE: Enabled for development environment only_
 
 From within the ./app/ directory:
 
+First time clone, run `npm i`
+
 Start the client server using webpack-dev-server `sudo npm run client`
 
-Start the express server to handle api requests ```sudo npm run server```
+Start the express server to handle api requests `sudo npm run server`
 
 Client server is running on localhost:3000
 
