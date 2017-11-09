@@ -1,9 +1,11 @@
 # MERN Stack - Basic User Dashboard
 
 ### Stack
+* MongoDB
+* Express
+* React + Redux
+* Node
 
-* React
-* Redux
 
 ##### NPM Packages
 * [Redux Forms](https://redux-form.com/)
@@ -16,12 +18,20 @@
 _NOTE: Enabled for development environment only_
 
 
-### Directory Structure
+### Getting Started
 
-Common
-Client
-Server
+From within the ./app/ directory:
 
--or-
+Start the client server using webpack-dev-server `sudo npm run client`
 
-app
+Start the express server to handle api requests ```sudo npm run server```
+
+Client server is running on localhost:3000
+
+Express server is running on localhost:3001
+
+##### Directory Structure
+
+* app
+  * client
+  * server 
