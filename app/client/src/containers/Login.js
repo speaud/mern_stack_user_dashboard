@@ -31,7 +31,7 @@ class QueryForm extends Component {
 
   render(){
     return (
-      <div className="container">
+      <div className="container"><p>s</p>
         <div className="row">
           <ContactForm onSubmit={this.submit} />
           {/*
@@ -39,8 +39,8 @@ class QueryForm extends Component {
           https://redux-form.com/7.1.2/examples/
 
           <hr />
-            <p>SyncValidationForm</p>
-            <SyncValidationForm onSubmit={this.submit} />
+          <p>SyncValidationForm</p>
+          <SyncValidationForm onSubmit={this.submit} />
           */}
         </div>
       </div>

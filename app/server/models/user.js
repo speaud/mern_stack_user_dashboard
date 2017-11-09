@@ -4,6 +4,9 @@
 const mongoose = require('mongoose');
 //import mongoose from 'mongoose'
 
+
+// TODO: http://mongoosejs.com/docs/validation.html
+
 const UserSchema = new mongoose.Schema({
   //email: { type: String, unique: true },
   //password: String,

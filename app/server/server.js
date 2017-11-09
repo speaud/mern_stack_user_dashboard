@@ -141,7 +141,7 @@ router.use(function(req, res, next) {
 
 // Test route to make sure everything is working
 router.get('/test', function(req, res) {
-  res.json({ message: 'test' });
+  res.json({ message: 'test', prop: 'valchanged' });
 });
 
 
@@ -158,11 +158,13 @@ router.route('/user')
 
     console.log(req.body)
 
-    var user = new User({
-      first_name: req.body.first_name,
-      last_name: req.body.last_name,
-      email: req.body.email
-    });
+    //var user = new User({
+    //  first_name: req.body.first_name,
+    //  last_name: req.body.last_name,
+    //  email: req.body.email
+    //});
+
+    var user = new User(req.body);
 
     user.save(function(err) {
       if (err) {
@@ -274,19 +276,6 @@ router.route('/bears/:bear_id')
       res.json({ message: 'Successfully deleted' });
     });
   });
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

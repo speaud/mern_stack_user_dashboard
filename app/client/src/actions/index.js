@@ -48,23 +48,20 @@ export const testApiPost = (arg) => dispatch => {
 };
 
 
+// TODO: https://www.mongodb.com/blog/post/password-authentication-with-mongoose-part-1
 
 export const testUserPost = (obj) => dispatch => {
-// testApiPost
- console.log("testUserPost ")
- console.log(obj)
-
     axios.post('/api/user', {
         first_name: obj.firstName,
         last_name: obj.lastName,
         email: obj.email
     })
-        .then(function (response) {
-            console.log(response.data);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+    .then((res) => {
+        console.log(res.data);
+    })
+    .catch((err) => {
+        console.log(res);
+    });
 };
 
 

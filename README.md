@@ -10,6 +10,8 @@
 ##### NPM Packages
 * [Redux Forms](https://redux-form.com/)
 * [Axios](https://github.com/axios/axios)
+* Webpack - HMR for client
+* Nodemon - HMR for server
 
 ##### Developer Tools
 * [Redux Dev Tools](https://github.com/gaearon/redux-devtools)
