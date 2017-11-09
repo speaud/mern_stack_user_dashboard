@@ -4,8 +4,9 @@
   "description": "front end code challange",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --config ./etc/webpack.config.js --env.NODE_ENV=development",
-    "build": "webpack --config ./etc/webpack.config.js --env.NODE_ENV=production --progress"
+    "build": "webpack --config ./client/etc/webpack.config.js --env.NODE_ENV=production --progress",
+    "client": "webpack-dev-server --config ./client/etc/webpack.config.js --env.NODE_ENV=development",
+    "server": "node ./server/server.js"
   },
   "repository": {
     "type": "git",
@@ -50,7 +51,11 @@
     "style-loader": "^0.18.2",
     "uglifyjs-webpack-plugin": "^1.0.0-beta.3",
     "webpack": "^3.3.0",
-    "webpack-dev-server": "^2.5.1"
+    "webpack-dev-server": "^2.5.1",
+    "express": "~4.16.1",
+    "morgan": "~1.9.0",
+    "mongoose" : "~4.11.14",
+    "body-parser": "~1.18.2"    
   },
   "babel": {
     "presets": [

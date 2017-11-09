@@ -20,20 +20,20 @@ const storeConfig = () => {
     persistedState,
     compose(
       applyMiddleware(...middlewares),
-      DevTools.instrument() // Excluded if IS_PRODUCTION, logic contained in ../components/App.js
+      DevTools.instrument() // This is excluded if IS_PRODUCTION, logic contained in ../components/App.js
     )
   )
   
 	store.subscribe(() => {
-		saveState(store.getState());
+    saveState(store.getState());
 	});  
 
   if (module.hot) {
     // Enable Webpack HMR for reducers
     module.hot.accept('../reducers', () => {
-       const nextRootReducer = require('../reducers').default
-       store.replaceReducer(nextRootReducer)
-     })
+        const nextRootReducer = require('../reducers').default
+        store.replaceReducer(nextRootReducer)
+    })
   }
 
   return store

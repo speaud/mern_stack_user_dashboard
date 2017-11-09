@@ -10,7 +10,7 @@ module.exports = env => {
         entry: [
             'babel-polyfill',
             'react-hot-loader/patch', // Required for HotModuleReplacementPlugin
-            './src/index.js'
+            './client/src/index.js'
         ],
         output: {
             path: path.resolve(__dirname, '../bin'),
@@ -30,10 +30,13 @@ module.exports = env => {
             ]
         },
         devServer: {
-            contentBase: './public',
+            contentBase: './client/public',
             open: true,
             port: 3000,
-            hot: true // Required for HotModuleReplacementPlugin
+            hot: true, // Required for HotModuleReplacementPlugin
+            proxy: {
+                "/api": "http://localhost:3001" // Proxy for the API express server. See ../server/server.js for more information
+            }
         },
         devtool: (IS_PRODUCTION) ? 'source-map' : 'eval',
         plugins: [

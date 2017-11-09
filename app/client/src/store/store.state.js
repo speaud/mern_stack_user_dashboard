@@ -1,6 +1,6 @@
 export const loadState = () => {
 	try {
-		const serializedStateObj = JSON.parse(localStorage.getItem('urbn_front_end_code_challange'));
+		const serializedStateObj = JSON.parse(localStorage.getItem('mern_stack_user_dashboard'));
 		
 		// If the user has been inactive for more than 20 minutes, let the root redeucer set the state
 		if (serializedStateObj.state === null || new Date().getTime() > serializedStateObj.expiration) {
@@ -14,7 +14,7 @@ export const loadState = () => {
 
 export const saveState = (state) => {
 	try {
-		localStorage.setItem('urbn_front_end_code_challange', JSON.stringify({
+		localStorage.setItem('mern_stack_user_dashboard', JSON.stringify({
 			"state": state,
 			"expiration": new Date().getTime() + 20 * 60000 // 20 minutes
 		}));
