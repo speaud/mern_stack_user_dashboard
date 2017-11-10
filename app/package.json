@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack --config ./client/etc/webpack.config.js --env.NODE_ENV=production --progress",
     "client": "webpack-dev-server --config ./client/etc/webpack.config.js --env.NODE_ENV=development",
-    "server": "node ./server/server.js"
+    "server": "nodemon ./server/server.js"
   },
   "repository": {
     "type": "git",
@@ -46,6 +46,7 @@
     "express-session": "^1.15.6",
     "html-minifier": "^3.5.6",
     "html-webpack-plugin": "^2.30.1",
+    "material-ui": "^0.19.4",
     "mongoose": "~4.11.14",
     "monk": "^6.0.5",
     "morgan": "~1.9.0",
@@ -75,5 +76,8 @@
       "transform-object-rest-spread",
       "transform-es2015-spread"
     ]
+  },
+  "nodemonConfig": {
+    "ignore": ["client/*", "node_modules/*"]
   }
 }

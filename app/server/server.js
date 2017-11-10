@@ -18,7 +18,7 @@ const app = express();
  * Connect to MongoDB.
  */
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://127.0.0.1:27017/mern_user_dashboard', {
+mongoose.connect('mongodb://127.0.0.1:27017/mern_user_dashboard2', {
   useMongoClient: true
 });
 mongoose.connection.on('error', (err) => {
@@ -113,10 +113,6 @@ app.use(bodyParser.json());
 
 
 
-
-
-
-
 // create our router
 var router = express.Router();
 var port = 3001;
@@ -150,20 +146,16 @@ var User = require('./models/user');
 //router.route('/user(/:user_id)?')
 //router.route(['/user', '/user/id/'])
 router.route('/user')
-  //.get((req, res) => {
-  //  console.log(req.body)
-  //  res.json({ message: '/user/:user_id' });
-  //})
+  .get(function(req, res) {
+    User.find((err, users) => {
+      if (err) {
+        res.send(err);
+      }
+
+      res.json(users);
+    });
+  })
   .post((req, res) => {
-
-    console.log(req.body)
-
-    //var user = new User({
-    //  first_name: req.body.first_name,
-    //  last_name: req.body.last_name,
-    //  email: req.body.email
-    //});
-
     var user = new User(req.body);
 
     user.save(function(err) {
@@ -226,9 +218,11 @@ router.route('/bears')
 
   // get all the bears (accessed at GET http://localhost:8080/api/bears)
   .get(function(req, res) {
+    console.log(req)
     Bear.find(function(err, bears) {
-      if (err)
+      if (err) {
         res.send(err);
+      }
 
       res.json(bears);
     });

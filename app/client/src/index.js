@@ -6,6 +6,8 @@ import { AppContainer } from 'react-hot-loader';
 import App from './components/App';
 import storeConfig from './store/store.config.js';
 import scss from './styles/index.scss';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
 
 const store = storeConfig()
 
@@ -14,7 +16,9 @@ const renderApp = Component => {
   render(
     <AppContainer>
     	<Provider store={store}>
-      		<Component />
+			<MuiThemeProvider>
+      			<Component />
+  			</MuiThemeProvider>
   		</Provider>
     </AppContainer>,
     document.getElementById('app')

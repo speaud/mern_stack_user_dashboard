@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import ContactForm from '../components/Form'
+import MaterialUiForm from '../components/MaterialUiForm'
 import { api } from '../../api/'
 //import SyncValidationForm from '../components/SyncValidationForm'
 
@@ -24,23 +24,23 @@ class QueryForm extends Component {
     console.log("submit - values")
     console.log(values)
 
-    this.props.testUserPost(values)
+    //this.props.testUserPost(values)
   }
 
 
 
   render(){
     return (
-      <div className="container"><p>s</p>
+      <div className="container">
         <div className="row">
-          <ContactForm onSubmit={this.submit} />
+          <MaterialUiForm onSubmit={this.submit} />
           {/*
 
-          https://redux-form.com/7.1.2/examples/
+            https://redux-form.com/7.1.2/examples/
 
-          <hr />
-          <p>SyncValidationForm</p>
-          <SyncValidationForm onSubmit={this.submit} />
+            <hr />
+            <p>SyncValidationForm</p>
+            <SyncValidationForm onSubmit={this.submit} />
           */}
         </div>
       </div>
