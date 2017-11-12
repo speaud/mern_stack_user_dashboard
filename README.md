@@ -38,4 +38,9 @@ Express server is running on localhost:3001
 
 * app
   * client
-  * server 
+  * server
+  * common (shared by client and server)
+  	* modules
+  	* etc
+
+_NOTE: I tired to combine FHS standards with that set by the active community
