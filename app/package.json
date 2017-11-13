@@ -6,7 +6,8 @@
   "scripts": {
     "build": "webpack --config ./client/etc/webpack.config.js --env.NODE_ENV=production --progress",
     "client": "webpack-dev-server --config ./client/etc/webpack.config.js --env.NODE_ENV=development",
-    "server": "nodemon ./server/server.js"
+    "server": "nodemon ./server/server.js",
+    "start": "concurrently \"webpack-dev-server --config ./client/etc/webpack.config.js --env.NODE_ENV=development\" \"nodemon ./server/server.js\""
   },
   "repository": {
     "type": "git",
@@ -40,6 +41,7 @@
     "babel-preset-env": "^1.6.0",
     "babel-preset-react": "^6.24.1",
     "body-parser": "~1.18.2",
+    "concurrently": "^3.5.0",
     "connect-mongo": "^2.0.0",
     "css-loader": "^0.28.4",
     "express": "~4.16.1",
@@ -78,6 +80,9 @@
     ]
   },
   "nodemonConfig": {
-    "ignore": ["client/*", "node_modules/*"]
+    "ignore": [
+      "client/*",
+      "node_modules/*"
+    ]
   }
 }

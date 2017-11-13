@@ -8,10 +8,13 @@
 
 
 ##### NPM Packages
-* [Redux Forms](https://redux-form.com/)
-* [Axios](https://github.com/axios/axios)
-* Webpack - HMR for client
-* Nodemon - HMR for server
+* Client
+  * [Redux Forms](https://redux-form.com/)
+  * [Material UI](http://www.material-ui.com/)
+  * [Axios](https://github.com/axios/axios)
+  * Webpack - HMR for client
+* Server
+  * Nodemon - HMR for server
 
 ##### Developer Tools
 * [Redux Dev Tools](https://github.com/gaearon/redux-devtools)
@@ -26,9 +29,7 @@ From within the ./app/ directory:
 
 First time clone, run `npm i`
 
-Start the client server using webpack-dev-server `sudo npm run client`
-
-Start the express server to handle api requests `sudo npm run server`
+Start both the client server and API server `sudo npm run start`
 
 Client server is running on localhost:3000
 
