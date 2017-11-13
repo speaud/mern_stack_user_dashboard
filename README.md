@@ -1,4 +1,4 @@
-# MERN Stack - Basic User Dashboard
+# MERN Stack - Basic User Dashboard --- IN DEVELOPMENT, NOTE: NOT PROD READY NOR STABLE
 
 ### Stack
 * MongoDB
