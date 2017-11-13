@@ -21,6 +21,7 @@ class QueryForm extends Component {
 
   submit(values){
     // print the form values to the console
+    console.log("---")
     console.log("submit - values")
     console.log(values)
 

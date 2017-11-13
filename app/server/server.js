@@ -21,6 +21,8 @@ mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://127.0.0.1:27017/mern_user_dashboard2', {
   useMongoClient: true
 });
+
+
 mongoose.connection.on('error', (err) => {
     console.error(err);
     console.log('%s MongoDB connection error. Please make sure MongoDB is running.');

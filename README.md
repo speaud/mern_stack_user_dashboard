@@ -22,6 +22,7 @@
 
 _NOTE: Enabled for development environment only_
 
+Use Postman for API development
 
 ### Getting Started
 
@@ -29,11 +30,11 @@ From within the ./app/ directory:
 
 First time clone, run `npm i`
 
-Start both the client server and API server `sudo npm run start`
+Start both the client server (webpack-dev-server) and API server (express) `sudo npm run start`
 
 Client server is running on localhost:3000
 
-Express server is running on localhost:3001
+Express server is running on localhost:3001 (use for Postman development purposes)
 
 ##### Directory Structure
 
