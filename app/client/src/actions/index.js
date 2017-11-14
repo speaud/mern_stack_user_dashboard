@@ -1,4 +1,5 @@
 import axios from 'axios'
+import bcrypt from 'bcrypt-nodejs'
 
 import {
     REQUEST_QUERY_SOURCE,
@@ -56,6 +57,10 @@ export const testUserPost = (obj) => dispatch => {
         last_name: obj.lastName,
         email: obj.email
     })
+
+    //axios.post('/api/user', obj)    
+
+
     .then((res) => {
         console.log(res.data);
     })
@@ -64,6 +69,38 @@ export const testUserPost = (obj) => dispatch => {
     });
 };
 
+
+export const checkUsername = obj => dispatch => {
+    console.log("---checkUsername---")
+    axios.get('/api/user/validate/' + obj.username)
+        .then((res) => {
+            console.log(res.data);
+        })
+        .catch((err) => {
+            console.log(res);
+        });    
+}
+
+export const userSignUp = obj => dispatch => {
+    console.log("---userSignUp---")
+
+    bcrypt.hash(obj.password, null, null, (err, hash) => {
+
+        obj.password = hash
+        
+        //console.dir(obj)
+
+
+        axios.post('/api/user/signup', obj)
+            
+            .then((res) => {
+                console.log(res.data);
+            })
+            .catch((err) => {
+                console.log(res);
+            });        
+    });
+};
 
 
 

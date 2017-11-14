@@ -143,34 +143,81 @@ router.get('/test', function(req, res) {
 });
 
 
-var User = require('./models/user');
-
-//router.route('/user(/:user_id)?')
-//router.route(['/user', '/user/id/'])
-router.route('/user')
-  .get(function(req, res) {
-    User.find((err, users) => {
-      if (err) {
-        res.send(err);
-      }
-
-      res.json(users);
-    });
-  })
-  .post((req, res) => {
-    var user = new User(req.body);
-
-    user.save(function(err) {
-      if (err) {
-        res.send(err);
-      }
-
-      res.json({ message: 'User created!' });
-    });
-
-  })
+//var User = require('./models/user');
+//
+////router.route('/user(/:user_id)?')
+////router.route(['/user', '/user/id/'])
+//router.route('/user')
+//  .get(function(req, res) {
+//    User.find((err, users) => {
+//      if (err) {
+//        res.send(err);
+//      }
+//
+//      res.json(users);
+//    });
+//  })
+//  .post((req, res) => {
+//    var user = new User(req.body);
+//
+//    user.save(function(err) {
+//      if (err) {
+//        res.send(err);
+//      }
+//
+//      res.json({ message: 'User created!' });
+//    });
+//
+//  })
   //.put((req, res) => {})
   //.delete('/:user_id', (req, res) => {});
+
+
+
+
+
+const UserModels = require('./models/user.model');
+
+router.route('/user/validate/:username')
+  .get((req, res) => {
+    UserModels.find({ username: req.params.username }, (err, result) => {
+      if (err) {
+        res.send(err);
+      }
+
+      if (result.length) {
+        res.json({username: req.params.username, unique: false, message: "Username is not unique"});
+      } else {
+        res.json({username: req.params.username, unique: true, message: "Username is unique"});
+      }
+    })
+  })
+
+router.route('/user/signup')
+  .post((req, res) => {
+    let UserModel = new UserModels(req.body);
+
+    UserModel.save((err) => {
+      if (err) {
+        res.send(err);
+      }
+
+      res.json({ message: 'New user created' });
+    });
+  })
+
+//router.route('/user/signup/check/:username')
+//  .get((req, res) => {
+//    Bear.findById(req.params.bear_id, function(err, bear) {
+//      if (err)
+//        res.send(err);
+//      res.json(bear);
+//    });
+//  })
+
+
+
+
 
 
 

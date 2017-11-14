@@ -36,7 +36,17 @@ module.exports = env => {
             hot: true, // Required for HotModuleReplacementPlugin
             proxy: {
                 "/api": "http://localhost:3001" // Proxy for the API express server. See ../server/server.js for more information
+            },
+            overlay: {
+              warnings: true,
+              errors: true
             }
+            //before(app){
+            //  console.log("webpack devServer - before")
+            //},
+            //after(app){
+            //  console.log("webpack devServer - after")
+            //}            
         },
         devtool: (IS_PRODUCTION) ? 'source-map' : 'eval',
         plugins: [

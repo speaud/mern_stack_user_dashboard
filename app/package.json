@@ -7,7 +7,7 @@
     "build": "webpack --config ./client/etc/webpack.config.js --env.NODE_ENV=production --progress",
     "client": "webpack-dev-server --config ./client/etc/webpack.config.js --env.NODE_ENV=development",
     "server": "nodemon ./server/server.js",
-    "start": "concurrently \"webpack-dev-server --config ./client/etc/webpack.config.js --env.NODE_ENV=development\" \"nodemon ./server/server.js\""
+    "start": "concurrently \"webpack-dev-server --config ./client/etc/webpack.config.js --env.NODE_ENV=development --color\" \"nodemon ./server/server.js\""
   },
   "repository": {
     "type": "git",
@@ -21,6 +21,7 @@
   "homepage": "https://github.com/speaud/urbn_front_end_code_challange#readme",
   "dependencies": {
     "axios": "^0.17.0",
+    "bcrypt-nodejs": "0.0.3",
     "es6-promise": "^4.1.1",
     "isomorphic-fetch": "^2.2.1",
     "prop-types": "^15.6.0",

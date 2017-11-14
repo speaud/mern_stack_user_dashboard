@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import MaterialUiForm from '../components/MaterialUiForm'
+//import MaterialUiForm from '../components/MaterialUiForm'
+import AsyncValidationForm from '../components/AsyncValidationForm'
 import { api } from '../../api/'
 //import SyncValidationForm from '../components/SyncValidationForm'
 
-import { testApi, testUserPost } from '../actions/'
+import { testApi, testUserPost, userSignUp, checkUsername } from '../actions/'
 
 class QueryForm extends Component {
   constructor(props){
@@ -21,10 +22,11 @@ class QueryForm extends Component {
 
   submit(values){
     // print the form values to the console
-    console.log("---")
-    console.log("submit - values")
-    console.log(values)
-
+    //console.log("---")
+    //console.log("submit - values")
+    //console.log(values)
+    this.props.checkUsername(values)
+    //this.props.userSignUp(values)
     //this.props.testUserPost(values)
   }
 
@@ -34,7 +36,7 @@ class QueryForm extends Component {
     return (
       <div className="container">
         <div className="row">
-          <MaterialUiForm onSubmit={this.submit} />
+          <AsyncValidationForm onSubmit={this.submit} />
           {/*
 
             https://redux-form.com/7.1.2/examples/
@@ -58,7 +60,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     testApi,
-    testUserPost
+    testUserPost,
+    userSignUp,
+    checkUsername
   },dispatch)
 }
 
