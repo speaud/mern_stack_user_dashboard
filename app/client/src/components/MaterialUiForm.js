@@ -5,7 +5,7 @@ import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton'
 import Checkbox from 'material-ui/Checkbox'
 import SelectField from 'material-ui/SelectField'
 import MenuItem from 'material-ui/MenuItem'
-//import asyncValidate from './asyncValidate'
+import asyncValidate from './asyncValidate'
 
 import validator from '../modules/validator'
 
@@ -22,6 +22,9 @@ const validate = values => {
     if (!values[field]) {
       errors[field] = 'Required'
     }
+
+    // values[field] && !validator.values[field](values[field])
+    // return validator.values[field].message 
   })
   
   if ( values.email && !validator.email(values.email) ) {
@@ -43,20 +46,49 @@ const validate = values => {
   return errors
 }
 
+//const renderTextField = ({
+//  input,
+//  label,
+//  meta: { touched, error },
+//  ...custom
+//}) => (
+//  <TextField
+//    hintText={label}
+//    floatingLabelText={label}
+//    errorText={touched && error}
+//    {...input}
+//    {...custom}
+//  />
+//)
+
+
 const renderTextField = ({
   input,
   label,
-  meta: { touched, error },
+  type,
+  meta: { asyncValidating, touched, error },
   ...custom
 }) => (
-  <TextField
-    hintText={label}
-    floatingLabelText={label}
-    errorText={touched && error}
-    {...input}
-    {...custom}
-  />
+  //<div>
+  //  <label>{label}</label>
+  //  <div className={asyncValidating ? 'async-validating' : ''}>
+  //    <input {...input} type={type} placeholder={label} />
+  //    {touched && error && <span>{error}</span>}
+  //  </div>
+  //</div>
+
+  <div className={asyncValidating ? 'async-validating' : ''}>
+    <TextField
+      hintText={label}
+      floatingLabelText={label}
+      errorText={touched && error}
+      type={type}
+      {...input}
+      {...custom}
+    />  
+  </div>
 )
+
 
 //const renderCheckbox = ({ input, label }) => (
 //  <Checkbox
@@ -123,5 +155,6 @@ const MaterialUiForm = props => {
 export default reduxForm({
   form: 'MaterialUiForm', // a unique identifier for this form
   validate,
-  //asyncValidate
+  asyncValidate,
+  asyncBlurFields: ['username']  
 })(MaterialUiForm)

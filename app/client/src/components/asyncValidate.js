@@ -15,12 +15,17 @@
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
 
 const asyncValidate = (values /*, dispatch */) => {
-  return sleep(1000).then(() => {
+  return sleep(100).then(() => {
+  	console.log("---asyncValidate")
     // simulate server latency
-    if (['john', 'paul', 'george', 'ringo'].includes(values.username)) {
+    if (['john', 'paul', 'george', 'ringo', 'johnnnnnn'].includes(values.username)) {
       throw { username: 'That username is taken' }
     }
   })
+
+
+
+
 }
 
 export default asyncValidate

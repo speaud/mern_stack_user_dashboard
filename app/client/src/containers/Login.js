@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-//import MaterialUiForm from '../components/MaterialUiForm'
-import AsyncValidationForm from '../components/AsyncValidationForm'
+import MaterialUiForm from '../components/MaterialUiForm'
+//import AsyncValidationForm from '../components/AsyncValidationForm'
 import { api } from '../../api/'
 //import SyncValidationForm from '../components/SyncValidationForm'
 
@@ -36,11 +36,12 @@ class QueryForm extends Component {
     return (
       <div className="container">
         <div className="row">
-          <AsyncValidationForm onSubmit={this.submit} />
+          <MaterialUiForm onSubmit={this.submit} />
           {/*
 
             https://redux-form.com/7.1.2/examples/
-
+            
+            <AsyncValidationForm onSubmit={this.submit} />
             <hr />
             <p>SyncValidationForm</p>
             <SyncValidationForm onSubmit={this.submit} />
