@@ -21,6 +21,10 @@ const asyncValidate = (values /*, dispatch */) => {
     if (['john', 'paul', 'george', 'ringo', 'johnnnnnn'].includes(values.username)) {
       throw { username: 'That username is taken' }
     }
+
+    if (['foo@foo.com', 'bar@bar.com'].includes(values.email)) {
+      throw { email: 'That email is taken' }
+    }    
   })
 
 
