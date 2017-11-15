@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import MaterialUiForm from '../components/MaterialUiForm'
+import SignUpForm from '../components/SignUpForm'
+import LoginForm from '../components/LoginForm'
 //import AsyncValidationForm from '../components/AsyncValidationForm'
 import { api } from '../../api/'
 //import SyncValidationForm from '../components/SyncValidationForm'
@@ -12,7 +13,8 @@ class QueryForm extends Component {
   constructor(props){
     super(props);
 
-    this.submit = this.submit.bind(this);
+    this.signup = this.signup.bind(this);
+    this.login = this.login.bind(this);
   }
 
   componentWillMount() {
@@ -20,7 +22,7 @@ class QueryForm extends Component {
    this.props.testApi()
   }
 
-  submit(values){
+  signup(values){
     // print the form values to the console
     //console.log("---")
     //console.log("submit - values")
@@ -30,22 +32,20 @@ class QueryForm extends Component {
     //this.props.testUserPost(values)
   }
 
+  login(values) {
+    console.log("login")
+  }
+
 
 
   render(){
     return (
       <div className="container">
         <div className="row">
-          <MaterialUiForm onSubmit={this.submit} />
-          {/*
-
-            https://redux-form.com/7.1.2/examples/
-            
-            <AsyncValidationForm onSubmit={this.submit} />
-            <hr />
-            <p>SyncValidationForm</p>
-            <SyncValidationForm onSubmit={this.submit} />
-          */}
+          <p>sign up form</p>
+          <SignUpForm onSubmit={this.signup} />
+          <p>login in form</p>
+          <LoginForm onSubmit={this.login} />
         </div>
       </div>
     )

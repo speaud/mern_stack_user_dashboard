@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { AppContainer } from 'react-hot-loader';
 import App from './components/App';
 import storeConfig from './store/store.config.js';
-import scss from './styles/index.scss';
+//import scss from './styles/index.scss';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 

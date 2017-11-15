@@ -1,39 +1,72 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
+import TextField from 'material-ui/TextField'
+import MenuItem from 'material-ui/MenuItem'
 
-let LoginForm = props => {
-  const { handleSubmit } = props
+const validate = values => {
+  const errors = {}
+  const requiredFields = [
+    'username',
+    'password'
+  ];
+
+  requiredFields.forEach(field => {
+    if (!values[field]) {
+      errors[field] = 'Required'
+    }
+  })
+  
+  return errors
+}
+
+const renderTextField = ({
+  input,
+  label,
+  type,
+  meta: { asyncValidating, touched, error },
+  ...custom
+}) => (
+  <div className={asyncValidating ? 'async-validating' : ''}>
+    <TextField
+      hintText={label}
+      floatingLabelText={label}
+      errorText={touched && error}
+      type={type}
+      {...input}
+      {...custom}
+    />  
+  </div>
+)
+
+const LoginForm = props => {
+  const { handleSubmit, pristine, reset, submitting } = props
   return (
-    <div>
-      <form onSubmit={ handleSubmit }>
-        <div>
-          <label htmlFor="firstName">First Name</label>
-          <Field name="firstName" component="input" type="text" />
-        </div>
-        <div>
-          <label htmlFor="lastName">Last Name</label>
-          <Field name="lastName" component="input" type="text" />
-        </div>
-        <div>
-          <label htmlFor="email">Email</label>
-          <Field name="email" component="input" type="email" />
-        </div>
-        <div>
-          <label htmlFor="username">Username</label>
-          <Field name="username" component="input" type="text" />
-        </div>
-        <div>
-          <label htmlFor="password">Password</label>
-          <Field name="password" component="input" type="text" />
-        </div>                
-        <button type="submit">Submit</button>
-      </form>
-    </div>
+    <form onSubmit={handleSubmit}>
+      <div>
+        <Field
+          name="username"
+          component={renderTextField}
+          label="Username"
+        />
+      </div>
+      <div>
+        <Field
+          name="password"
+          type="password"
+          component={renderTextField}
+          label="Password"
+        />      
+      </div>
+      <div>
+        <button type="submit" disabled={pristine || submitting}>
+          Login
+        </button>
+      </div>
+    </form>
   )
 }
 
-LoginForm = reduxForm({
-  form: 'loginForm'
+export default reduxForm({
+  form: 'LoginForm', // a unique identifier for this form
+  validate
 })(LoginForm)
-
-export default LoginForm;
