@@ -25,8 +25,8 @@ class QueryForm extends Component {
     //console.log("---")
     //console.log("submit - values")
     //console.log(values)
-    this.props.checkUsername(values)
-    //this.props.userSignUp(values)
+    //this.props.checkUsername(values)
+    this.props.userSignUp(values)
     //this.props.testUserPost(values)
   }
 

@@ -46,22 +46,6 @@ const validate = values => {
   return errors
 }
 
-//const renderTextField = ({
-//  input,
-//  label,
-//  meta: { touched, error },
-//  ...custom
-//}) => (
-//  <TextField
-//    hintText={label}
-//    floatingLabelText={label}
-//    errorText={touched && error}
-//    {...input}
-//    {...custom}
-//  />
-//)
-
-
 const renderTextField = ({
   input,
   label,
@@ -69,14 +53,6 @@ const renderTextField = ({
   meta: { asyncValidating, touched, error },
   ...custom
 }) => (
-  //<div>
-  //  <label>{label}</label>
-  //  <div className={asyncValidating ? 'async-validating' : ''}>
-  //    <input {...input} type={type} placeholder={label} />
-  //    {touched && error && <span>{error}</span>}
-  //  </div>
-  //</div>
-
   <div className={asyncValidating ? 'async-validating' : ''}>
     <TextField
       hintText={label}
@@ -88,15 +64,6 @@ const renderTextField = ({
     />  
   </div>
 )
-
-
-//const renderCheckbox = ({ input, label }) => (
-//  <Checkbox
-//    label={label}
-//    checked={input.value ? true : false}
-//    onCheck={input.onChange}
-//  />
-//)
 
 const MaterialUiForm = props => {
   const { handleSubmit, pristine, reset, submitting } = props
@@ -156,5 +123,5 @@ export default reduxForm({
   form: 'MaterialUiForm', // a unique identifier for this form
   validate,
   asyncValidate,
-  asyncBlurFields: ['username']  
+  asyncBlurFields: ['username', 'email']  
 })(MaterialUiForm)

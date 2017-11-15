@@ -22,7 +22,6 @@ mongoose.connect('mongodb://127.0.0.1:27017/mern_user_dashboard2', {
   useMongoClient: true
 });
 
-
 mongoose.connection.on('error', (err) => {
     console.error(err);
     console.log('%s MongoDB connection error. Please make sure MongoDB is running.');
@@ -34,86 +33,12 @@ mongoose.connection.on('error', (err) => {
     // TODO: .collections, .models
   });
 
-/**
- * Express configuration.
- */
-//app.set('host', process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0');
-//app.set('port', 3001);
-//app.set('views', path.join(__dirname, 'views'));
-//app.set('view engine', 'pug');
-//app.use(expressStatusMonitor());
-//app.use(compression());
-//app.use(sass({
-//  src: path.join(__dirname, 'public'),
-//  dest: path.join(__dirname, 'public')
-//}));
-
 app.use(logger('dev'));
-
 
 // Permit the app to parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 // Use body-parser as middleware for the app
 app.use(bodyParser.json());
-
-
-//app.use(expressValidator());
-//app.use(session({
-//  resave: true,
-//  saveUninitialized: true,
-//  secret: process.env.SESSION_SECRET,
-//  store: new MongoStore({
-//    url: process.env.MONGODB_URI || process.env.MONGOLAB_URI,
-//    autoReconnect: true,
-//    clear_interval: 3600
-//  })
-//}));
-//app.use(passport.initialize());
-//app.use(passport.session());
-//app.use(flash());
-//app.use((req, res, next) => {
-//  if (req.path === '/api/upload') {
-//    next();
-//  } else {
-//    lusca.csrf()(req, res, next);
-//  }
-//});
-//app.use(lusca.xframe('SAMEORIGIN'));
-//app.use(lusca.xssProtection(true));
-//app.use((req, res, next) => {
-//  res.locals.user = req.user;
-//  next();
-//});
-//app.use((req, res, next) => {
-//  // After successful login, redirect back to the intended page
-//  if (!req.user &&
-//      req.path !== '/login' &&
-//      req.path !== '/signup' &&
-//      !req.path.match(/^\/auth/) &&
-//      !req.path.match(/\./)) {
-//    req.session.returnTo = req.path;
-//  } else if (req.user &&
-//      req.path === '/account') {
-//    req.session.returnTo = req.path;
-//  }
-//  next();
-//});
-//app.use(express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }));
-
-///**
-// * Error Handler.
-// */
-//app.use(errorHandler());
-
-/**
- * Start Express server.
- */
-//app.listen(app.get('port'), () => {
-//  console.log('%s App is running at http://localhost:%d in %s mode', app.get('port'), app.get('env'));
-//  console.log('  Press CTRL-C to stop\n');
-//});
-
-
 
 // create our router
 var router = express.Router();
@@ -125,60 +50,74 @@ router.use(function(req, res, next) {
   next();
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
 // Test route to make sure everything is working
 router.get('/test', function(req, res) {
   res.json({ message: 'test', prop: 'valchanged' });
 });
 
 
-//var User = require('./models/user');
-//
-////router.route('/user(/:user_id)?')
-////router.route(['/user', '/user/id/'])
-//router.route('/user')
-//  .get(function(req, res) {
-//    User.find((err, users) => {
-//      if (err) {
-//        res.send(err);
-//      }
-//
-//      res.json(users);
-//    });
-//  })
-//  .post((req, res) => {
-//    var user = new User(req.body);
-//
-//    user.save(function(err) {
-//      if (err) {
-//        res.send(err);
-//      }
-//
-//      res.json({ message: 'User created!' });
-//    });
-//
-//  })
-  //.put((req, res) => {})
-  //.delete('/:user_id', (req, res) => {});
 
 
 
 
+
+
+// - /users
+// - /users/:id
+// - /users/check/:key/:value
+// - /signup
+// - /login
+// - /recover
 
 const UserModels = require('./models/user.model');
 
-router.route('/user/validate/:username')
+router.route('/users')
+  .get(function(req, res) {
+    UserModels.find((err, users) => {
+      if (err) {
+        res.send(err);
+      }
+
+      res.json(users);
+    });
+  })
+
+
+
+
+
+
+router.route('/users/check/:key/:value')
+  .get((req, res) => {
+    console.log(req.params)
+
+    UserModels.find({[req.params.key]: req.params.value}, (err, result) => {
+      if (err) {
+        res.send(err);
+      }
+
+      if (result.length) {
+        res.json({[req.params.key]: req.params.value, unique: false});
+      } else {
+        res.json({[req.params.key]: req.params.value, unique: true});
+      }
+    })
+  })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+router.route('/user/check/username/:username')
   .get((req, res) => {
     UserModels.find({ username: req.params.username }, (err, result) => {
       if (err) {
@@ -193,6 +132,21 @@ router.route('/user/validate/:username')
     })
   })
 
+router.route('/user/check/email/:email')
+  .get((req, res) => {
+    UserModels.find({ email: req.params.email }, (err, result) => {
+      if (err) {
+        res.send(err);
+      }
+
+      if (result.length) {
+        res.json({email: req.params.email, unique: false, message: "Email is not unique"});
+      } else {
+        res.json({email: req.params.email, unique: true, message: "Email is unique"});
+      }
+    })
+  })  
+
 router.route('/user/signup')
   .post((req, res) => {
     let UserModel = new UserModels(req.body);
@@ -206,119 +160,11 @@ router.route('/user/signup')
     });
   })
 
-//router.route('/user/signup/check/:username')
-//  .get((req, res) => {
-//    Bear.findById(req.params.bear_id, function(err, bear) {
-//      if (err)
-//        res.send(err);
-//      res.json(bear);
-//    });
-//  })
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-var Bear = require('./models/bear');
-
-
-
-// on routes that end in /bears
-// ----------------------------------------------------
-router.route('/bears')
-
-  // create a bear (accessed at POST http://localhost:8080/bears)
-  .post((req, res) => {
-    
-
-    
-    console.log(req.body)
-
-
-
-    var bear = new Bear({ name: req.body.name });    // create a new instance of the Bear model
-
-    //bear.name = req.body.name;  // set the bears name (comes from the request)
-
-
-    bear.save(function(err) {
-      if (err)
-        res.send(err);
-
-      res.json({ message: 'Bear created!' });
-    });
-
-    
-  })
-
-  // get all the bears (accessed at GET http://localhost:8080/api/bears)
-  .get(function(req, res) {
-    console.log(req)
-    Bear.find(function(err, bears) {
-      if (err) {
-        res.send(err);
-      }
-
-      res.json(bears);
-    });
-  });
-
-// on routes that end in /bears/:bear_id
-// ----------------------------------------------------
-router.route('/bears/:bear_id')
-
-  // get the bear with that id
-  .get(function(req, res) {
-    Bear.findById(req.params.bear_id, function(err, bear) {
-      if (err)
-        res.send(err);
-      res.json(bear);
-    });
-  })
-
-  // update the bear with this id
-  .put(function(req, res) {
-    Bear.findById(req.params.bear_id, function(err, bear) {
-
-      if (err)
-        res.send(err);
-
-      bear.name = req.body.name;
-      bear.save(function(err) {
-        if (err)
-          res.send(err);
-
-        res.json({ message: 'Bear updated!' });
-      });
-
-    });
-  })
-
-  // delete the bear with this id
-  .delete(function(req, res) {
-    Bear.remove({
-      _id: req.params.bear_id
-    }, function(err, bear) {
-      if (err)
-        res.send(err);
-
-      res.json({ message: 'Successfully deleted' });
-    });
-  });
 
 
 
@@ -329,18 +175,7 @@ app.use('/api', router);
 
 // Start the server
 app.listen(port);
+
 console.log('API server running on ' + port);
-
-
-
-
-
-
-
-
-
-
-
-
 
 module.exports = app;
