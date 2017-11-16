@@ -3,7 +3,7 @@ const express = require('express');
 //const compression = require('compression');
 const session = require('express-session');
 const bodyParser = require('body-parser');
-const logger = require('morgan');
+const morgan = require('morgan');
 //const chalk = require('chalk');
 //const errorHandler = require('errorhandler');
 const MongoStore = require('connect-mongo')(session);
@@ -34,7 +34,11 @@ mongoose.connection.on('error', (err) => {
     // TODO: .collections, .models
   });
 
-app.use(logger('dev'));
+// use morgan to log requests to the console
+app.use(morgan('dev'));
+
+// use body parser so we can get info from POST and/or URL parameters
+// app.use(bodyParser.urlencoded({ extended: false }));
 
 // Permit the app to parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -45,11 +49,108 @@ app.use(bodyParser.json());
 var router = express.Router();
 var port = 3001;
 
-// Middleware to use for all requests
-router.use(function(req, res, next) {
-  //console.log(req.db)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+router.use((req, res, next) => {
+  
+
+
+
   next();
 });
+
+
+
+
+
+// Middleware to use for all requests
+// See http://expressjs.com/en/guide/using-middleware.html and https://www.npmjs.com/package/jsonwebtoken
+// app.use('/user/:id', (req, res, next) => {
+
+    // Check header or url parameters or post parameters for auth token
+
+    // Decode auth token
+
+      // Verify secretOrPrivateKey and checks expiration
+
+        // If good, save to 'req' object for use in other api routes
+
+      // If there is no token
+
+// })    
+
+// ----------/\ example \/
+
+
+//// ---------------------------------------------------------
+//// route middleware to authenticate and check token
+//// ---------------------------------------------------------
+//apiRoutes.use(function(req, res, next) {
+//
+//  // check header or url parameters or post parameters for token
+//  var token = req.body.token || req.param('token') || req.headers['x-access-token'];
+//
+//  // decode token
+//  if (token) {
+//
+//    // verifies secret and checks exp
+//    jwt.verify(token, app.get('superSecret'), function(err, decoded) {      
+//      if (err) {
+//        return res.json({ success: false, message: 'Failed to authenticate token.' });    
+//      } else {
+//        // if everything is good, save to request for use in other routes
+//        req.decoded = decoded;  
+//        next();
+//      }
+//    });
+//
+//  } else {
+//
+//    // if there is no token
+//    // return an error
+//    return res.status(403).send({ 
+//      success: false, 
+//      message: 'No token provided.'
+//    });
+//    
+//  }
+//  
+//});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Test route to make sure everything is working
 router.get('/test', function(req, res) {
@@ -61,16 +162,18 @@ router.get('/test', function(req, res) {
 
 
 
-
+const UserModels = require('./models/user.model');
 
 // - /users
 // - /users/:id
 // - /users/check/:key/:value
+
+// - /authenticate
 // - /signup
 // - /login
 // - /recover
 
-const UserModels = require('./models/user.model');
+// NOTE: Use req.params, req.body, or req.query
 
 router.route('/users')
   .get((req, res) => {
@@ -123,6 +226,11 @@ router.route('/login')
       }
 
       if (bcrypt.compareSync(req.query.password, result[0].password)) {
+
+
+        // Generate authtoken
+
+
         return res.json({
           _id: result[0]._id,
           username: result[0].username,
@@ -135,16 +243,13 @@ router.route('/login')
           user: "invalid"
         });
       }
-
-
-      //if (result.length) {
-      //  res.json({[req.params.key]: req.params.value, unique: false});
-      //} else {
-      //  res.json({[req.params.key]: req.params.value, unique: true});
-      //}
     })
   })
 
+//router.route('/authenticate')
+//  .post((req, res) => {
+//
+//  })
 
 
 
