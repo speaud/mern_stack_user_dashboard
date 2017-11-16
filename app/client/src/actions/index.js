@@ -32,23 +32,6 @@ export const testApi = () => dispatch => {
         });
 };
 
-
-export const testApiPost = (arg) => dispatch => {
-// testApiPost
- console.log("testApiPost = " + arg)
-
-    axios.post('/api/bears', {
-        name: arg
-    })
-        .then(function (response) {
-            console.log(response.data);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-};
-
-
 // TODO: https://www.mongodb.com/blog/post/password-authentication-with-mongoose-part-1
 
 export const testUserPost = (obj) => dispatch => {
@@ -72,7 +55,7 @@ export const testUserPost = (obj) => dispatch => {
 
 export const checkUsername = obj => dispatch => {
     console.log("---checkUsername---")
-    axios.get('/api/user/validate/' + obj.username)
+    axios.get('/api/users/validate/' + obj.username)
         .then((res) => {
             console.log(res.data);
         })
@@ -83,15 +66,12 @@ export const checkUsername = obj => dispatch => {
 
 export const userSignUp = obj => dispatch => {
     console.log("---userSignUp---")
-
+    
+    // Store hash as password
     bcrypt.hash(obj.password, null, null, (err, hash) => {
-
         obj.password = hash
-        
-        //console.dir(obj)
 
-
-        axios.post('/api/user/signup', obj)
+        axios.post('/api/signup', obj)
             
             .then((res) => {
                 console.log(res.data);
@@ -103,7 +83,44 @@ export const userSignUp = obj => dispatch => {
 };
 
 
+export const userLogIn = obj => dispatch => {
+    console.log("---userLogIn---")
+    axios.get('/api/login', {
+            params: {
+                username: obj.username,
+                password: obj.password
+            }
+        })                          
+        .then((res) => {
+            console.log(res.data);
+        })
+        .catch((err) => {
+            console.log(res);
+        });  
 
+
+// Load hash from your password DB.
+//bcrypt.compare(user, hash, function(err, res) {
+//    // res == true
+//});
+
+//    bcrypt.hash(obj.password, null, null, (err, hash) => {
+//
+//        obj.password = hash
+//        
+//        //console.dir(obj)
+//
+//
+//        axios.post('/api/signup', obj)
+//            
+//            .then((res) => {
+//                console.log(res.data);
+//            })
+//            .catch((err) => {
+//                console.log(res);
+//            });        
+//    });
+};
 
 //export const queryAction = (arg) => dispatch => {
 //    dispatch({

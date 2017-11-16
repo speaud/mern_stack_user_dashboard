@@ -1,3 +1,4 @@
+const bcrypt = require('bcrypt-nodejs');
 const express = require('express');
 //const compression = require('compression');
 const session = require('express-session');
@@ -72,7 +73,7 @@ router.get('/test', function(req, res) {
 const UserModels = require('./models/user.model');
 
 router.route('/users')
-  .get(function(req, res) {
+  .get((req, res) => {
     UserModels.find((err, users) => {
       if (err) {
         res.send(err);
@@ -81,11 +82,6 @@ router.route('/users')
       res.json(users);
     });
   })
-
-
-
-
-
 
 router.route('/users/check/:key/:value')
   .get((req, res) => {
@@ -104,50 +100,7 @@ router.route('/users/check/:key/:value')
     })
   })
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-router.route('/user/check/username/:username')
-  .get((req, res) => {
-    UserModels.find({ username: req.params.username }, (err, result) => {
-      if (err) {
-        res.send(err);
-      }
-
-      if (result.length) {
-        res.json({username: req.params.username, unique: false, message: "Username is not unique"});
-      } else {
-        res.json({username: req.params.username, unique: true, message: "Username is unique"});
-      }
-    })
-  })
-
-router.route('/user/check/email/:email')
-  .get((req, res) => {
-    UserModels.find({ email: req.params.email }, (err, result) => {
-      if (err) {
-        res.send(err);
-      }
-
-      if (result.length) {
-        res.json({email: req.params.email, unique: false, message: "Email is not unique"});
-      } else {
-        res.json({email: req.params.email, unique: true, message: "Email is unique"});
-      }
-    })
-  })  
-
-router.route('/user/signup')
+router.route('/signup')
   .post((req, res) => {
     let UserModel = new UserModels(req.body);
 
@@ -160,6 +113,37 @@ router.route('/user/signup')
     });
   })
 
+router.route('/login')
+  .get((req, res) => {
+    console.log('api---/login')
+
+    UserModels.find({username: req.query.username}, (err, result) => {
+      if (err) {
+        res.send(err);
+      }
+
+      if (bcrypt.compareSync(req.query.password, result[0].password)) {
+        return res.json({
+          _id: result[0]._id,
+          username: result[0].username,
+          email: result[0].email,
+          fullname: result[0].fullname
+        });
+      } else {
+        // TODO: /login response for invalid login attempt
+        return res.json({
+          user: "invalid"
+        });
+      }
+
+
+      //if (result.length) {
+      //  res.json({[req.params.key]: req.params.value, unique: false});
+      //} else {
+      //  res.json({[req.params.key]: req.params.value, unique: true});
+      //}
+    })
+  })
 
 
 

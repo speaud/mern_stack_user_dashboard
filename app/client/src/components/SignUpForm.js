@@ -68,7 +68,8 @@ const renderTextField = ({
 const SignUpForm = props => {
   const { handleSubmit, pristine, reset, submitting } = props
   return (
-    <form onSubmit={handleSubmit}>asdsa
+    <form onSubmit={handleSubmit}>
+      <p>sign up form</p>
       <div>
         <Field
           name="fullName"

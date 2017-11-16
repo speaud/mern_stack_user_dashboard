@@ -42,6 +42,7 @@ const LoginForm = props => {
   const { handleSubmit, pristine, reset, submitting } = props
   return (
     <form onSubmit={handleSubmit}>
+    <p>login form</p>
       <div>
         <Field
           name="username"

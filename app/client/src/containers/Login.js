@@ -4,10 +4,10 @@ import { bindActionCreators } from 'redux'
 import SignUpForm from '../components/SignUpForm'
 import LoginForm from '../components/LoginForm'
 //import AsyncValidationForm from '../components/AsyncValidationForm'
-import { api } from '../../api/'
+// import { api } from '../../api/'
 //import SyncValidationForm from '../components/SyncValidationForm'
 
-import { testApi, testUserPost, userSignUp, checkUsername } from '../actions/'
+import { testApi, userSignUp, userLogIn } from '../actions/'
 
 class QueryForm extends Component {
   constructor(props){
@@ -18,22 +18,17 @@ class QueryForm extends Component {
   }
 
   componentWillMount() {
-   console.log(api.val)
    this.props.testApi()
   }
 
   signup(values){
-    // print the form values to the console
-    //console.log("---")
-    //console.log("submit - values")
-    //console.log(values)
-    //this.props.checkUsername(values)
     this.props.userSignUp(values)
-    //this.props.testUserPost(values)
   }
 
   login(values) {
-    console.log("login")
+    //console.log("login")
+    //console.dir(values)
+    this.props.userLogIn(values)
   }
 
 
@@ -42,9 +37,7 @@ class QueryForm extends Component {
     return (
       <div className="container">
         <div className="row">
-          <p>sign up form</p>
           <SignUpForm onSubmit={this.signup} />
-          <p>login in form</p>
           <LoginForm onSubmit={this.login} />
         </div>
       </div>
@@ -61,12 +54,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     testApi,
-    testUserPost,
     userSignUp,
-    checkUsername
+    userLogIn
   },dispatch)
 }
 
-
 export default connect(mapStateToProps, mapDispatchToProps)(QueryForm);
-//export default connect(mapStateToProps)(QueryForm);
