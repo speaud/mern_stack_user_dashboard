@@ -7,7 +7,8 @@
     "build": "webpack --config ./client/etc/webpack.config.js --env.NODE_ENV=production --progress",
     "client": "webpack-dev-server --config ./client/etc/webpack.config.js --env.NODE_ENV=development",
     "server": "nodemon ./server/server.js",
-    "start-servers": "node common/etc/start-servers"
+    "start-servers": "node common/etc/start-servers",
+    "todo-finder": "node common/etc/todo-finder"
   },
   "repository": {
     "type": "git",

@@ -6,6 +6,8 @@ const chalk = require('chalk');
 //
 //console.log(msg)
 
+// todo asdad
+
 console.log('\nStarting API server ' + chalk.blue.bgWhite('[nodemon]') + ' and client-side server ' + chalk.white.bgBlue('[webpack-dev-server]') + '\n')
 
 //TODO: extend/enhance
