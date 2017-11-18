@@ -36,7 +36,7 @@ class QueryForm extends Component {
   render(){
     return (
       <div className="container">
-        <div className="row">
+        <div className="row">sss
           <SignUpForm onSubmit={this.signup} />
           <LoginForm onSubmit={this.login} />
         </div>

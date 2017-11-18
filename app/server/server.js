@@ -9,6 +9,7 @@ const morgan = require('morgan');
 const MongoStore = require('connect-mongo')(session);
 const path = require('path');
 const mongoose = require('mongoose');
+const jwt = require('jsonwebtoken'); // used to create, sign, and verify auth tokens
 
 /**
  * Create Express server.
@@ -252,7 +253,46 @@ router.route('/login')
 //  })
 
 
-
+//apiRoutes.post('/authenticate', function(req, res) {
+//
+//  console.log(req.body)
+//
+//  // find the user
+//  User.findOne({
+//    name: req.body.name
+//  }, function(err, user) {
+//
+//    if (err) throw err;
+//
+//    if (!user) {
+//      res.json({ success: false, message: 'Authentication failed. User not found.' });
+//    } else if (user) {
+//
+//      // check if password matches
+//      if (user.password != req.body.password) {
+//        res.json({ success: false, message: 'Authentication failed. Wrong password.' });
+//      } else {
+//
+//        // if user is found and password is right
+//        // create a token
+//        var payload = {
+//          admin: user.admin 
+//        }
+//        var token = jwt.sign(payload, app.get('superSecret'), {
+//          expiresIn: 86400 // expires in 24 hours
+//        });
+//
+//        res.json({
+//          success: true,
+//          message: 'Enjoy your token!',
+//          token: token
+//        });
+//      }   
+//
+//    }
+//
+//  });
+//});
 
 
 
