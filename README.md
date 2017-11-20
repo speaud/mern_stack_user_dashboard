@@ -30,7 +30,11 @@ From within the ./app/ directory:
 
 First time clone, run `npm i`
 
-Start both the client server (webpack-dev-server) and API server (express) `sudo npm run start`
+Start both the client server (webpack-dev-server) and API server (express) `sudo npm run start-servers`
+
+If you are developing API's while only testing with Postman you can run the standalone API server by running `sudo npm run server`
+
+NOTE: If you run the client server without running the API server (express) the app will return errors since said API server is not running
 
 Client server is running on localhost:3000
 
