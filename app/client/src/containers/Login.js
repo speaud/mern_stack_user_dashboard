@@ -31,12 +31,16 @@ class QueryForm extends Component {
     this.props.userLogIn(values)
   }
 
+  testtoken() {
+    console.log("testtoken")
+  }
+
 
 
   render(){
     return (
       <div className="container">
-        <div className="row">sss
+        <div className="row">
           <SignUpForm onSubmit={this.signup} />
           <LoginForm onSubmit={this.login} />
         </div>
