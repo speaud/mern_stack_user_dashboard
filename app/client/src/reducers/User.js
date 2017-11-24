@@ -19,6 +19,7 @@ const User = (state = {}, action) => {
       return {
         ...state,
         ...action.payload
+        //meta: FSA_META_RECEIVE
       }      
 
     default:
