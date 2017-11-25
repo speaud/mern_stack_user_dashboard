@@ -1,10 +1,16 @@
 # MERN Stack - Basic User Dashboard --- IN DEVELOPMENT, NOTE: NOT PROD READY NOR STABLE
 
-### Stack
-* MongoDB
-* Express
-* React + Redux
-* Node
+### Project Overview
+
+...
+
+### Stack Overview
+* Client
+  * React + Redux
+  * Node
+* Server
+  * MongoDB
+  * Express
 
 
 ##### NPM Packages
@@ -17,8 +23,14 @@
   * Nodemon - HMR for server
 
 ##### Developer Tools
-* [Redux Dev Tools](https://github.com/gaearon/redux-devtools)
-* [Redux Logger](https://github.com/evgenyrodionov/redux-logger)
+* Client
+  * built-in
+    * [Redux Dev Tools](https://github.com/gaearon/redux-devtools)
+    * [Redux Logger](https://github.com/evgenyrodionov/redux-logger)
+
+* Server
+  * External
+    * You will need to download then setup [Postman](https://www.getpostman.com/)
 
 _NOTE: Enabled for development environment only_
 

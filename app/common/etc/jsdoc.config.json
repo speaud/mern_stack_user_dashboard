@@ -1,0 +1,13 @@
+{
+    "source": {
+        "include": ["./client/", "./common/", "./server/"],
+		"exclude": ["./node_modules/"],
+        "includePattern": ".+\\.js(doc|x)?$",
+        "excludePattern": "(^|\\/|\\\\)_"        
+    },
+    "opts": {
+        "encoding": "utf8",
+        "destination": "./common/doc/jsdoc/",
+        "recurse": true
+    }    
+}
