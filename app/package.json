@@ -1,7 +1,7 @@
 {
-  "name": "urbn_front_end_code_challange",
+  "name": "mern_stack_user_dashboard",
   "version": "1.0.0",
-  "description": "front end code challange",
+  "description": "mern_stack_user_dashboard",
   "main": "index.js",
   "scripts": {
     "build": "webpack --config ./client/etc/webpack.config.js --env.NODE_ENV=production --progress",
@@ -9,18 +9,18 @@
     "server": "nodemon ./server/server.js",
     "start-servers": "node common/etc/start-servers",
     "todo-finder": "node common/etc/todo-finder",
-    "update-doc": "jsdoc"
+    "update-doc": "jsdoc -c ./common/etc/jsdoc.config.json"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/speaud/urbn_front_end_code_challange.git"
+    "url": "git+https://github.com/speaud/mern_stack_user_dashboard.git"
   },
   "author": "Joshua Mummert",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/speaud/urbn_front_end_code_challange/issues"
+    "url": "https://github.com/speaud/mern_stack_user_dashboard/issues"
   },
-  "homepage": "https://github.com/speaud/urbn_front_end_code_challange#readme",
+  "homepage": "https://github.com/speaud/mern_stack_user_dashboard#readme",
   "dependencies": {
     "axios": "^0.17.0",
     "bcrypt-nodejs": "0.0.3",

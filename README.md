@@ -32,6 +32,10 @@
   * External
     * You will need to download then setup [Postman](https://www.getpostman.com/)
 
+* Common
+  * built-in
+    * [JSDoc](usejsdoc.org/)
+
 _NOTE: Enabled for development environment only_
 
 Use Postman for API development
