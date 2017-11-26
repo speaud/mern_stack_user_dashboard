@@ -396,25 +396,17 @@ router.route('/verified/user/:id')
       })
     })
   })
+  .delete((req, res) => {
+    UserModels.remove({
+      _id: req.body.id
+    }, (err, result) => {
+      if (err) {
+        res.send(err);
+      }
 
-
-//  .put(function(req, res) {
-//    Bear.findById(req.params.bear_id, function(err, bear) {
-//
-//      if (err)
-//        res.send(err);
-//
-//      bear.name = req.body.name;
-//      bear.save(function(err) {
-//        if (err)
-//          res.send(err);
-//
-//        res.json({ message: 'Bear updated!' });
-//      });
-//
-//    });
-//  })
-
+      return res.json(formatJson.response(true, result, "User successfully deleted"))
+    });
+  });
 
 
 
