@@ -300,86 +300,15 @@ router.route('/login')
     })
   })
 
-router.route('/authenticate')
-
-
-
-
-//  .get((req, res) => {
-//    console.log('api---/login')
-//
-//    UserModels.find({username: req.query.username}, (err, result) => {
-//      if (err) {
-//        res.send(err);
-//      }
-//
-//      if (bcrypt.compareSync(req.query.password, result[0].password)) {
-//
-//
-//        // Generate authtoken
-//
-//
-//        return res.json({
-//          _id: result[0]._id,
-//          username: result[0].username,
-//          email: result[0].email,
-//          fullname: result[0].fullname
-//        });
-//      } else {
-//        // TODO: /login response for invalid login attempt
-//        return res.json({
-//          user: "invalid"
-//        });
-//      }
-//    })
-//  })
-//
-//
-//
-//
-//
-
-
-//  .post((req, res) => {
-//
-//
-//
-//
-//
-//        var payload = {
-//          admin: "asdasdasd"
-//        }
-//        var token = jwt.sign(payload, app.get('superSecret'), {
-//          expiresIn: 86400 // expires in 24 hours
-//        });
-//
-//        res.json({
-//          success: true,
-//          message: 'Enjoy your token!',
-//          token: token
-//        });
-//
-//
-//
-//
-//
-//
-//
-//  })
-//
-//
-//
-//
-
 // ---------------------------------------------------------
 // route middleware to authenticate and check token
 // ---------------------------------------------------------
 router.use('/verified', (req, res, next) => {
-  console.log("verified route")
   
-  console.log('req.body.token = ' + req.body.token)
-  console.log('req.params.token = ' + req.params.token)
-  console.log('req.headers[x-access-token] = ' + req.headers['x-access-token'])
+  //console.log("verified route")
+  //console.log('req.body.token = ' + req.body.token)
+  //console.log('req.params.token = ' + req.params.token)
+  //console.log('req.headers[x-access-token] = ' + req.headers['x-access-token'])
 
   // check header or url parameters or post parameters for token
   var token = req.body.token || req.params.token || req.headers['x-access-token'];
@@ -435,15 +364,56 @@ router.route('/verified/users')
   })
 
 
+router.route('/verified/user/:id')
+  .get((req, res) => {
+    UserModels.findById(req.params.id, (err, result) => {
+      if (err) {
+        res.send(err);
+      }
+      return res.json(formatJson.response(true, result, "User found"))    
+    })
+  })
+  .put((req, res) => {
+    UserModels.findById(req.params.id, (err, result) => {
+      // The 'result' object returned from mongoose doesn't access the properties directly
+      // It uses the prototype chain hence hasOwnProperty will return false
+
+      for (key in req.body) {
+        if (result.get(key)) {
+          result[key] = req.body[key]
+        } else {
+          //TODO: better error handling
+          console.log(key + " key not found")
+        }
+      }
+
+      result.save((err) => {
+        if (err) {
+          res.send(err);
+        }
+        
+        return res.json(formatJson.response(true, result, "User updated"))
+      })
+    })
+  })
 
 
-
-
-
-
-
-
-
+//  .put(function(req, res) {
+//    Bear.findById(req.params.bear_id, function(err, bear) {
+//
+//      if (err)
+//        res.send(err);
+//
+//      bear.name = req.body.name;
+//      bear.save(function(err) {
+//        if (err)
+//          res.send(err);
+//
+//        res.json({ message: 'Bear updated!' });
+//      });
+//
+//    });
+//  })
 
 
 
