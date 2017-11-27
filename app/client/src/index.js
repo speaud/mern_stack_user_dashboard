@@ -16,8 +16,8 @@ const renderApp = Component => {
   render(
     <AppContainer>
     	<Provider store={store}>
-			<MuiThemeProvider>
-      			<Component />
+  			<MuiThemeProvider>
+    			<Component />
   			</MuiThemeProvider>
   		</Provider>
     </AppContainer>,
