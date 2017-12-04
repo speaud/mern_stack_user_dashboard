@@ -8,6 +8,11 @@ import storeConfig from './store/store.config.js';
 //import scss from './styles/index.scss';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
+import { IS_PRODUCTION } from './constants/'
+
+import DevTools from './containers/DevTools'
+
+console.log("IS_PRODUCTION = " + IS_PRODUCTION)
 
 const store = storeConfig()
 
@@ -16,10 +21,15 @@ const renderApp = Component => {
   render(
     <AppContainer>
     	<Provider store={store}>
-  			<MuiThemeProvider>
-    			<Component />
-  			</MuiThemeProvider>
-  		</Provider>
+        <div>
+          <MuiThemeProvider>
+            <Component />
+          </MuiThemeProvider>
+          {!IS_PRODUCTION && 
+            <DevTools />
+          }        
+        </div>
+      </Provider>
     </AppContainer>,
     document.getElementById('app')
   )

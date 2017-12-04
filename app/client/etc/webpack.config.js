@@ -1,7 +1,8 @@
-const path = require('path');
-const webpack = require('webpack');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path')
+const webpack = require('webpack')
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const DashboardPlugin = require('webpack-dashboard/plugin')
 
 module.exports = env => {
     const IS_PRODUCTION = (env.NODE_ENV == 'production') ? true : false;
@@ -55,11 +56,9 @@ module.exports = env => {
                 'NODE_ENV': JSON.stringify(env.NODE_ENV)
               }
             }),
+            new DashboardPlugin(),
             new webpack.HotModuleReplacementPlugin(),
-            //new webpack.HotModuleReplacementPlugin({
-            //    multistep: true // Build in two steps - first compiling the hot update chunks, and then the remaining normal assets
-            //}),
-            new UglifyJSPlugin(/* No need to enable Parallelization or chucking for an app this small */)    
+            new UglifyJSPlugin(/* No need to enable Parallelization or chucking yet */)    
         ]
     }
 

@@ -11,9 +11,6 @@ const App = () => (
 		{/*
 		*/}
 		<Login />
-		{!IS_PRODUCTION && 
-			<DevTools />
-		}
     </div>
 );
 
