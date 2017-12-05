@@ -22,6 +22,7 @@ const ProviderComponent = ({ store, history }) => {
         path: '*',
         onEnter: ({ params }, replace) => replace('404')
       }
+      // TODO: 404 handling for nested path (e.g., asdasd/adasd/adasd/...)
     ]
   }
 

@@ -1,5 +1,3 @@
-// TODO: return custom messages so we don't have to repeat them
-// TODO: check email and username to be unique
 const validator = {
 	fullName (str) {
 		return /^([a-zA-Z]){2,25}\s([a-zA-Z]){2,25}/i.test(str)
