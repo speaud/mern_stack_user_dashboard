@@ -1,17 +1,14 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 
-class RoutingPageThree extends Component {
+export default class RoutingPageThree extends Component {
 
   render(){
     return (
       <div className="container">
         <div className="row">
-          RoutingPageThree
+          404
         </div>
       </div>
     )
   }
 }
-
-export default connect()(RoutingPageThree);
