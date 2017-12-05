@@ -6,7 +6,7 @@ export default class RoutingPageTwo extends Component {
     return (
       <div className="container">
         <div className="row">
-          RoutingPageTwoRoutingPageTwo
+          2
           v
         </div>
       </div>
