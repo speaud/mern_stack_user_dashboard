@@ -4,7 +4,13 @@
   "description": "mern_stack_user_dashboard",
   "main": "index.js",
   "scripts": {
+
+
+
     "client-dev": "webpack-dashboard -- webpack-dev-server --config ./client/etc/webpack.client.development.config.js --env.NODE_ENV=development",
+
+
+    
     "server": "nodemon ./server/server.js",
     "todo-finder": "node ./shared/etc/todo-finder",
     "update-jsdoc": "jsdoc -c ./shared/etc/jsdoc.config.json",
@@ -23,9 +29,6 @@
   "dependencies": {
     "axios": "^0.17.0",
     "bcrypt-nodejs": "0.0.3",
-    "es6-promise": "^4.1.1",
-    "history": "^4.7.2",
-    "isomorphic-fetch": "^2.2.1",
     "jsonwebtoken": "^8.1.0",
     "prop-types": "^15.6.0",
     "react": "^15.6.1",
@@ -51,7 +54,6 @@
     "chalk": "^2.3.0",
     "connect-mongo": "^2.0.0",
     "css-loader": "^0.28.4",
-    "csv-loader": "^2.1.1",
     "express": "~4.16.1",
     "express-session": "^1.15.6",
     "html-minifier": "^3.5.6",
@@ -59,7 +61,6 @@
     "jsdoc": "^3.5.5",
     "material-ui": "^0.19.4",
     "mongoose": "~4.11.14",
-    "monk": "^6.0.5",
     "morgan": "~1.9.0",
     "node-sass": "^4.5.3",
     "nodemon": "^1.12.1",
@@ -76,8 +77,7 @@
     "webpack-dev-middleware": "^1.12.2",
     "webpack-dev-server": "^2.5.1",
     "webpack-hot-middleware": "^2.21.0",
-    "webpack-merge": "^4.1.1",
-    "xml-loader": "^1.2.1"
+    "webpack-merge": "^4.1.1"
   },
   "babel": {
     "presets": [

@@ -1,11 +1,10 @@
 const path = require('path')
 const webpack = require('webpack')
 const merge = require('webpack-merge')
-const DashboardPlugin = require('webpack-dashboard/plugin')
 
-const webpackBaseDevelopmentConfig = require('../../shared/etc/webpack.base.development.config.js');
+const webpackSharedDevelopmentConfig = require('../../shared/etc/webpack.shared.development.config.js');
 
-module.exports = merge(webpackBaseDevelopmentConfig, {
+module.exports = merge(webpackSharedDevelopmentConfig, {
   entry: [
     'babel-polyfill',
     'react-hot-loader/patch', // Required for HotModuleReplacementPlugin
@@ -49,11 +48,5 @@ module.exports = merge(webpackBaseDevelopmentConfig, {
       if this is not set then the 'react-router' package will return an error then display an empty page
     */
     historyApiFallback: true
-  },
-  // devtool: 'cheap-module-eval-source-map',
-  plugins: [
-    new DashboardPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NamedModulesPlugin()
-  ]
+  }
 });
