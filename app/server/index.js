@@ -57,22 +57,18 @@ router.use((req, res, next) => {
   next();
 });
 
+/*
 
+  module - router.use
 
+  method - router.<method>
+
+*/
 
 router.use('/test', require('./controllers/test.ctrl.js'))
 
-
-
-
-
-
-
-
-
-
-
-
+router.post('/signup', require('./controllers/signup.ctrl.js'))
+router.get('/login', require('./controllers/login.ctrl.js'))
 
 const UserModels = require('./models/user.model');
 
@@ -93,153 +89,7 @@ router.route('/users/check/:key/:value')
     })
   })
 
-router.route('/signup')
-  .post((req, res) => {
-    let UserModel = new UserModels(req.body);
-
-    UserModel.save((err) => {
-      if (err) {
-        res.send(err);
-      }
-
-      res.json({ message: 'New user created' });
-    });
-  })
-
-router.route('/login')
-  .get((req, res) => {
-    console.log('api---/login')
-
-    UserModels.find({username: req.query.username}, (err, result) => {
-      if (err) {
-        res.send(err);
-      }
-
-      if (bcrypt.compareSync(req.query.password, result[0].password)) {
-
-        var payload = {
-          admin: "asdasdasd"
-        }
-
-        // TODO: look in payload, must be plain obj - what is it used for
-        let token = jwt.sign({username: result[0].username}, app.get('superSecret'), {
-          expiresIn: 86400 // expires in 24 hours
-        });
-
-        return res.json(formatJson.response(true, {
-          _id: result[0]._id,
-          username: result[0].username,
-          fullName: result[0].fullName,
-          email: result[0].email,
-          fullname: result[0].fullname,
-          token: token,
-          meta: {
-            todo: "todo"
-          }
-        }, "Successful login"))
-      } else {
-        // TODO: /login response for invalid login attempt
-        return res.json({
-          user: "invalid"
-        });
-      }
-    })
-  })
-
-// ---------------------------------------------------------
-// route middleware to authenticate and check token
-// ---------------------------------------------------------
-router.use('/verified', (req, res, next) => {
-  var token = req.body.token || req.params.token || req.headers['x-access-token'];
-
-  // decode token
-  if (token) {
-
-    // verifies secret and checks exp
-    jwt.verify(token, app.get('superSecret'), function(err, decoded) {      
-      if (err) {
-        return res.json({ success: false, message: 'Failed to authenticate token.' });    
-      } else {
-        // if everything is good, save to request for use in other routes
-        req.decoded = decoded;  
-        next();
-      }
-    });
-
-  } else {
-
-    // if there is no token
-    // return an error
-    return res.status(403).send({ 
-      success: false, 
-      message: 'No token provided.'
-    });
-    
-  }
-});
-
-router.route('/verified/test')
-  .get((req, res) => {
-
-    res.json({
-      success: true
-    })
-  })
-
-router.route('/verified/users')
-  .get((req, res) => {
-    UserModels.find((err, users) => {
-      if (err) {
-        res.send(err);
-      }
-
-      res.json(users);
-    });
-  })
-
-router.route('/verified/user/:id')
-  .get((req, res) => {
-    UserModels.findById(req.params.id, (err, result) => {
-      if (err) {
-        res.send(err);
-      }
-      return res.json(formatJson.response(true, result, "User found"))    
-    })
-  })
-  .put((req, res) => {
-    UserModels.findById(req.params.id, (err, result) => {
-      // The 'result' object returned from mongoose doesn't access the properties directly
-      // It uses the prototype chain hence hasOwnProperty will return false
-
-      for (key in req.body) {
-        if (result.get(key)) {
-          result[key] = req.body[key]
-        } else {
-          //TODO: better error handling
-          console.log(key + " key not found")
-        }
-      }
-
-      result.save((err) => {
-        if (err) {
-          res.send(err);
-        }
-        
-        return res.json(formatJson.response(true, result, "User updated"))
-      })
-    })
-  })
-  .delete((req, res) => {
-    UserModels.remove({
-      _id: req.body.id
-    }, (err, result) => {
-      if (err) {
-        res.send(err);
-      }
-
-      return res.json(formatJson.response(true, result, "User successfully deleted"))
-    });
-  });
+router.use('/verified', require('./controllers/verified.ctrl.js'))
 
 // Register routes
 app.use('/api', router);

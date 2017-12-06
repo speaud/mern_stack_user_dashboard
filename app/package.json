@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "client": "webpack-dashboard -- webpack-dev-server --config ./client/etc/webpack.client.development.config.js --env.NODE_ENV=development",
+    "client-raw": "webpack-dev-server --config ./client/etc/webpack.client.development.config.js --env.NODE_ENV=development",
     "server": "nodemon --exec './node_modules/.bin/nodejs-dashboard' node ./server/etc/dashboard.tool",
+    "server-raw": "nodemon ./server/index",
     "todo-finder": "node ./shared/etc/todo-finder",
     "update-jsdoc": "jsdoc -c ./shared/etc/jsdoc.config.json",
     "open-jsdoc": "xdg-open ./shared/doc/jsdoc/index.html"
