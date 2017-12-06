@@ -1,17 +1,10 @@
-const bcrypt = require('bcrypt-nodejs');
 const express = require('express');
-//const compression = require('compression');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
-//const chalk = require('chalk');
-//const errorHandler = require('errorhandler');
 const MongoStore = require('connect-mongo')(session);
 const path = require('path');
 const mongoose = require('mongoose');
-const jwt = require('jsonwebtoken'); // used to create, sign, and verify auth tokens
-
-const { formatJson } = require('./modules/format.json.response')
 
 /**
  * Create Express server.
@@ -49,9 +42,6 @@ app.use(bodyParser.json());
 // create our router
 var router = express.Router();
 var port = 3001;
-
-// TODO: square away how secretOrPrivateKey will be set
-app.set('superSecret', "mernstackuserdashboard"); // secret variable
 
 router.use((req, res, next) => {
   next();
