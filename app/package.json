@@ -4,14 +4,8 @@
   "description": "mern_stack_user_dashboard",
   "main": "index.js",
   "scripts": {
-
-
-
-    "client-dev": "webpack-dashboard -- webpack-dev-server --config ./client/etc/webpack.client.development.config.js --env.NODE_ENV=development",
-
-
-    
-    "server": "nodemon ./server/server.js",
+    "client": "webpack-dashboard -- webpack-dev-server --config ./client/etc/webpack.client.development.config.js --env.NODE_ENV=development",
+    "server": "nodemon --exec './node_modules/.bin/nodejs-dashboard' node ./server/etc/dashboard.tool",
     "todo-finder": "node ./shared/etc/todo-finder",
     "update-jsdoc": "jsdoc -c ./shared/etc/jsdoc.config.json",
     "open-jsdoc": "xdg-open ./shared/doc/jsdoc/index.html"
@@ -63,6 +57,7 @@
     "mongoose": "~4.11.14",
     "morgan": "~1.9.0",
     "node-sass": "^4.5.3",
+    "nodejs-dashboard": "^0.4.3",
     "nodemon": "^1.12.1",
     "redbox-react": "^1.5.0",
     "redux-devtools": "^3.4.0",

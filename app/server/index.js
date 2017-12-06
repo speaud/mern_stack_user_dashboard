@@ -58,7 +58,10 @@ router.use((req, res, next) => {
 });
 
 
+
+
 router.use('/test', require('./controllers/test.ctrl.js'))
+
 
 
 
