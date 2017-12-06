@@ -4,13 +4,11 @@
   "description": "mern_stack_user_dashboard",
   "main": "index.js",
   "scripts": {
-    "build": "webpack-dashboard -- webpack --config ./client/etc/webpack.config.js --env.NODE_ENV=production --progress",
-    "client": "webpack-dashboard -- webpack-dev-server --config ./client/etc/webpack.config.js --env.NODE_ENV=development",
+    "client-dev": "webpack-dashboard -- webpack-dev-server --config ./client/etc/webpack.client.development.config.js --env.NODE_ENV=development",
     "server": "nodemon ./server/server.js",
-    "start-servers": "node common/etc/start-servers",
-    "todo-finder": "node common/etc/todo-finder",
-    "update-jsdoc": "jsdoc -c ./common/etc/jsdoc.config.json",
-    "open-jsdoc": "xdg-open ./common/doc/jsdoc/index.html"
+    "todo-finder": "node ./shared/etc/todo-finder",
+    "update-jsdoc": "jsdoc -c ./shared/etc/jsdoc.config.json",
+    "open-jsdoc": "xdg-open ./shared/doc/jsdoc/index.html"
   },
   "repository": {
     "type": "git",
@@ -78,6 +76,7 @@
     "webpack-dev-middleware": "^1.12.2",
     "webpack-dev-server": "^2.5.1",
     "webpack-hot-middleware": "^2.21.0",
+    "webpack-merge": "^4.1.1",
     "xml-loader": "^1.2.1"
   },
   "babel": {
