@@ -1,24 +1,64 @@
-let mongoose = require("mongoose");
-let chai = require('chai');
-let chaiHttp = require('chai-http');
-let should = chai.should();
-let server = require('../index');
+// let mongoose = require("mongoose");
+const chai = require('chai');
+const chaiHttp = require('chai-http');
+const should = chai.should();
+const server = require('../index');
 
 chai.use(chaiHttp);
 
-describe('Books', () => {
-	
 
-describe('/GET book', () => {
-  it('it should GET all the books', (done) => {
+
+
+const UserModelSchema = require('../models/user.model');
+
+describe('User CRUD Test', () => {
+	let testUser = {
+		fullName: "mocha tester",
+		email: "mocha@tester.com",
+		username: "mochatester",
+		password: "MochaTester!"
+	}
+
+	it('Create new user', (done) => {
 		chai.request(server)
-	    .get('/api/test')
+		.post('/api/signup')
+		.send(testUser)
+		.end((err, res) => {
+		  	res.should.have.status(200);
+		  	res.body.data.should.have.property('_id');
+
+			testUser.id = res.body.data['_id']
+		  done();
+		});
+	});
+
+	it('Log in as new user', (done) => {
+		chai.request(server)
+		.get('/api/login')
+		.query({username: testUser.username, password: testUser.password})
+		.end((err, res) => {
+		  	res.should.have.status(200);
+		  	res.body.data.should.have.property('token');
+			
+			testUser.token = res.body.data['token']
+		  done();
+		});
+	});
+
+// Update new user
+
+// Confirm new user updated
+
+	it('Delete new user', (done) => {
+		chai.request(server)
+	    .delete('/api/verified/user/' + testUser.id)
+	    .set('x-access-token', testUser.token)
 	    .end((err, res) => {
 		  	res.should.have.status(200);
-		  	// res.body.should.be.a('array');
-		  	// res.body.length.should.be.eql(0);
 	      done();
 	    });
-  });
-});
+	});
+
+// Confirm new user deleted
+
 })

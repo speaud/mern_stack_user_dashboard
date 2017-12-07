@@ -1,25 +1,19 @@
 const express = require('express');
-const session = require('express-session');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
-const MongoStore = require('connect-mongo')(session);
 const path = require('path');
 const mongoose = require('mongoose');
 
-/**
- * Create Express server.
- */
-const app = express();
-
-/**
- * Connect to MongoDB.
- */
+// Connect to MongoDB.
 mongoose.Promise = global.Promise;
+
 mongoose.connect('mongodb://127.0.0.1:27017/mern_user_dashboard2', {
-  useMongoClient: true
+  useMongoClient: true // mongoose-specific optio, use mongoose 4.11's new connection logic
+  // TODO: 'autoIndex' option for production builds
 });
 
-mongoose.connection.on('error', (err) => {
+mongoose.connection
+  .on('error', (err) => {
     console.error(err);
     console.log('%s MongoDB connection error. Please make sure MongoDB is running.');
     process.exit();
@@ -29,6 +23,9 @@ mongoose.connection.on('error', (err) => {
     console.log('\tDB:', mongoose.connection.name);
     // TODO: .collections, .models
   });
+
+// Create Express server
+const app = express();
 
 // use morgan to log requests to the console
 app.use(morgan('dev'));
