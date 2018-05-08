@@ -1,9 +1,11 @@
 exports.formatJson = {
-	response: (status, data, message) => {
-		let response = {
-			success: (typeof status === 'boolean' || status === null) ? status : null,
-			data: (data && typeof data === 'object') ? data : null, // has owns keys/props
-			message: (typeof message === 'string') ? message : null
+	response: (valid, payload, message) => {
+		let response = {}
+
+		if (valid) {
+			response.data = payload;
+		} else {
+			response.error = payload
 		}
 
 		return response
