@@ -65,7 +65,12 @@ router.route('/user/:id')
       if (err) {
         res.send(err);
       }
-      return res.json(formatJson.response(true, result, "User found"))    
+
+      if (result) {
+        return res.json(formatJson.response(true, result, "User found"))    
+      } else {
+        return res.json(formatJson.response(false, result, "User not found"))    
+      }
     })
   })
   .put((req, res) => {

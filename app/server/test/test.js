@@ -9,7 +9,7 @@ chai.use(chaiHttp);
 const UserModelSchema = require('../models/user.model');
 
 
-
+// https://github.com/chaijs/chai-http
 /*
 
 	check if user email is already registered
@@ -64,6 +64,18 @@ describe('User CRUD Test', () => {
       		done();
 	    });
 	});
+
+	it('Comfirm new user was deleted', (done) => {
+		chai.request(server)
+	    .get('/api/verified/user/' + testUser.id)
+	    .set('x-access-token', testUser.token)
+	    .set('_id', testUser.id)
+	    .end((err, res) => {
+		  	chai.expect(res).to.have.status(200);
+		  	chai.expect(res.body.data).to.be.null;
+      		done();
+	    });
+	});	
 
 // todo: Confirm new user deleted
 
