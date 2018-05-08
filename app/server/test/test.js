@@ -8,6 +8,16 @@ chai.use(chaiHttp);
 
 const UserModelSchema = require('../models/user.model');
 
+
+
+/*
+
+	check if user email is already registered
+
+*/
+
+
+
 describe('User CRUD Test', () => {
 	let testUser = {
 		fullName: "mocha tester",
@@ -25,7 +35,7 @@ describe('User CRUD Test', () => {
 		  	res.body.data.should.have.property('_id');
 
 			testUser.id = res.body.data['_id']
-		  done();
+	  		done();
 		});
 	});
 
@@ -38,21 +48,20 @@ describe('User CRUD Test', () => {
 		  	res.body.data.should.have.property('token');
 			
 			testUser.token = res.body.data['token']
-		  done();
+	  		done();
 		});
 	});
 
 // todo: Update new user
 
-// todo: Confirm new user updated
-
 	it('Delete new user', (done) => {
 		chai.request(server)
 	    .delete('/api/verified/user/' + testUser.id)
 	    .set('x-access-token', testUser.token)
+	    .send({id: testUser.id})
 	    .end((err, res) => {
 		  	res.should.have.status(200);
-	      done();
+      		done();
 	    });
 	});
 
