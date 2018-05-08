@@ -15,12 +15,6 @@ router.get('/login', (req, res) => {
     if (result.length) {
       // username is valid, check password
       if (bcrypt.compareSync(req.query.password, result[0].password)) {
-        // TODO: look in payload, must be plain obj - what is it used for
-        /*var payload = {
-          admin: "asdasdasd"
-        }*/
-        //let token = jwt.sign({username: result[0].username}, 'mernstackuserdashboard', {expiresIn: 86400}); // expires in 24 hours
-
         // valid password
         return res.json(formatJson.response(true, {
           _id: result[0]._id,
