@@ -52,7 +52,18 @@ describe('User CRUD Test', () => {
 		});
 	});
 
-// todo: Update new user
+	it('Update new user name', (done) => {
+		let updatedFullName = testUser.fullName + 'updated';
+		chai.request(server)
+	    .put('/api/verified/user/' + testUser.id)
+	    .set('x-access-token', testUser.token)
+	    .send({fullName: updatedFullName})
+	    .end((err, res) => {
+		  	res.should.have.status(200);
+		  	chai.expect(res.body.data.fullName).to.equal(updatedFullName);
+      		done();
+	    });
+	});
 
 	it('Delete new user', (done) => {
 		chai.request(server)
@@ -68,15 +79,11 @@ describe('User CRUD Test', () => {
 	it('Comfirm new user was deleted', (done) => {
 		chai.request(server)
 	    .get('/api/verified/user/' + testUser.id)
-	    .set('x-access-token', testUser.token)
-	    .set('_id', testUser.id)
+	    .set({'x-access-token': testUser.token, '_id': testUser.id})
 	    .end((err, res) => {
 		  	chai.expect(res).to.have.status(200);
 		  	chai.expect(res.body.data).to.be.null;
       		done();
 	    });
 	});	
-
-// todo: Confirm new user deleted
-
 })
