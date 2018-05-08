@@ -4,6 +4,7 @@ import { Router, Route, IndexRoute, Redirect } from 'react-router';
 
 import App from './app';
 
+import Login from '../containers/Login'
 import RoutingPageOne from '../containers/routing-page-one'
 import RoutingPageTwo from '../containers/routing-page-two'
 import RoutingPageThree from '../containers/routing-page-three'
@@ -14,7 +15,7 @@ const ProviderComponent = ({ store, history }) => {
   const routes = {
     path: '/',
     component: App,
-    indexRoute: { component: RoutingPageOne },
+    indexRoute: { component: Login },
     childRoutes: [
       { path: 'two', component: RoutingPageTwo },
       { path: '404', component: RoutingPageThree },

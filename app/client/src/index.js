@@ -26,7 +26,9 @@ const
 // Render the React application to the DOM
 render(
   <AppContainer errorReporter={Redbox}>
+  <MuiThemeProvider>
     <ProviderComponent store={store} history={history} />
+    </MuiThemeProvider>
   </AppContainer>,
   rootDomElement
 );
@@ -49,12 +51,23 @@ if (module.hot) {
   module.hot.accept('./components/provider', () => {
     render(
       <AppContainer errorReporter={Redbox}>
+      <MuiThemeProvider>
         <ProviderComponent store={store} history={history} />
+        </MuiThemeProvider>
       </AppContainer>,
       rootDomElement
     );
   });
 }
+
+
+
+
+
+
+
+
+
 
 /*
 // Define the render method in a function expression so it can be used by Webpack HMR
@@ -81,4 +94,5 @@ renderApp(App)
 // Enable Webpack HMR, for development only
 if (process.env.NODE_ENV !== 'production' && module.hot) {
   module.hot.accept('./components/App', () => { renderApp(App) })
-}*/
+}
+*/
