@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 // Connect to MongoDB.
 mongoose.Promise = global.Promise;
 
-mongoose.connect('mongodb://127.0.0.1:27017/mern_user_dashboard2', {
+mongoose.connect('mongodb://127.0.0.1:27017/mern_user_dashboard', {
   useMongoClient: true // mongoose-specific optio, use mongoose 4.11's new connection logic
   // TODO: 'autoIndex' option for production builds
 });
@@ -19,8 +19,7 @@ mongoose.connection
     process.exit();
   })
   .once('open', () => {
-    console.log("MongoDB connection live");
-    console.log('\tDB:', mongoose.connection.name);
+    console.log('MongoDB connection open\n\tDB:', mongoose.connection.name);
     // TODO: .collections, .models
   });
 
@@ -59,6 +58,12 @@ router.get('/login', require('./controllers/login.ctrl.js'))
 
 const UserModels = require('./models/user.model');
 
+
+
+
+
+
+
 router.route('/users/check/:key/:value')
   .get((req, res) => {
     console.log(req.params)
@@ -75,6 +80,15 @@ router.route('/users/check/:key/:value')
       }
     })
   })
+
+
+
+
+
+
+
+
+
 
 router.use('/verified', require('./controllers/verified.ctrl.js'))
 

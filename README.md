@@ -2,7 +2,13 @@
 
 ### Project Overview
 
-...
+cd app
+npm i
+
+#### Directory Structure
+
+./app/server - API
+./app/client - front end 
 
 ### Stack Overview
 * Client
@@ -14,3 +20,4 @@
 
 ### Testing
 * Server - Mocha + Chai
+NOTE: close running server instances before running

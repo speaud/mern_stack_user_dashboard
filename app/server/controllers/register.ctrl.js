@@ -11,6 +11,10 @@ router.post('/signup', (req, res) => {
   // check if email already exists
   // check for unique username
   // check password is valid
+
+
+  
+
   let UserModel = new UserModels(req.body);
 
   bcrypt.hash(req.body.password, null, null, (err, hash) => {
@@ -24,6 +28,8 @@ router.post('/signup', (req, res) => {
       res.json(formatJson.response(true, UserModel, "New user created"));
     });
   });
+
+
 })
 
 module.exports = router;

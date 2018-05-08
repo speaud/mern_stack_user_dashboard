@@ -6,9 +6,6 @@ const server = require('../index');
 
 chai.use(chaiHttp);
 
-
-
-
 const UserModelSchema = require('../models/user.model');
 
 describe('User CRUD Test', () => {
@@ -45,9 +42,9 @@ describe('User CRUD Test', () => {
 		});
 	});
 
-// Update new user
+// todo: Update new user
 
-// Confirm new user updated
+// todo: Confirm new user updated
 
 	it('Delete new user', (done) => {
 		chai.request(server)
@@ -59,6 +56,6 @@ describe('User CRUD Test', () => {
 	    });
 	});
 
-// Confirm new user deleted
+// todo: Confirm new user deleted
 
 })
