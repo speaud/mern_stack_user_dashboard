@@ -7,7 +7,10 @@ const
   { formatJson } = require('../modules/format.json.response');
 	
 router.get('/login', (req, res) => {
-  console.log('api---/login')
+
+
+
+
 
   UserModels.find({username: req.query.username}, (err, result) => {
     if (err) {
@@ -21,9 +24,17 @@ router.get('/login', (req, res) => {
       }
 
       // TODO: look in payload, must be plain obj - what is it used for
+
+
+
+
       let token = jwt.sign({username: result[0].username}, 'mernstackuserdashboard', {
         expiresIn: 86400 // expires in 24 hours
       });
+
+
+
+      
 
       return res.json(formatJson.response(true, {
         _id: result[0]._id,
@@ -43,6 +54,11 @@ router.get('/login', (req, res) => {
       });
     }
   })
+
+
+
+
+
 })
 
 module.exports = router;
