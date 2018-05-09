@@ -50,8 +50,8 @@ export const userSignUp = obj => dispatch => {
     console.log("---userSignUp---")
     
     // Store hash as password
-    bcrypt.hash(obj.password, null, null, (err, hash) => {
-        obj.password = hash
+    //bcrypt.hash(obj.password, null, null, (err, hash) => {
+        //obj.password = hash
 
         axios.post('/api/signup', obj)
             
@@ -61,7 +61,7 @@ export const userSignUp = obj => dispatch => {
             .catch((err) => {
                 console.log(res);
             });        
-    });
+    //});
 };
 
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-//import SignUpForm from '../components/SignUpForm'
+import SignUpForm from '../components/SignUpForm'
 import LoginForm from '../components/LoginForm'
 //import AsyncValidationForm from '../components/AsyncValidationForm'
 // import { api } from '../../api/'
@@ -37,11 +37,11 @@ class QueryForm extends Component {
 
 
 
-          //<SignUpForm onSubmit={this.signup} />
   render(){
     return (
       <div className="container">
         <div className="row">
+          <SignUpForm onSubmit={this.signup} />
           <LoginForm onSubmit={this.login} />
         </div>
       </div>

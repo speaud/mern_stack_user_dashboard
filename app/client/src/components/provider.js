@@ -15,7 +15,7 @@ const ProviderComponent = ({ store, history }) => {
   const routes = {
     path: '/',
     component: App,
-    indexRoute: { component: Login },
+    indexRoute: { component: RoutingPageOne },
     childRoutes: [
       { path: 'two', component: RoutingPageTwo },
       { path: '404', component: RoutingPageThree },
