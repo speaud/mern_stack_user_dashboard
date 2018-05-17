@@ -4,14 +4,14 @@
   "description": "mern_stack_user_dashboard",
   "main": "index.js",
   "scripts": {
-    "client": "webpack-dashboard -- webpack-dev-server --config ./client/etc/webpack.client.development.config.js --env.NODE_ENV=development",
-    "client-raw": "webpack-dev-server --config ./client/etc/webpack.client.development.config.js --env.NODE_ENV=development",
-    "server": "nodemon --exec './node_modules/.bin/nodejs-dashboard' node ./server/etc/dashboard.tool",
-    "server-raw": "nodemon ./server/index",
+    "client": "webpack-dev-server --config ./client/etc/webpack.client.development.config.js --env.NODE_ENV=development",
+    "clientpp": "webpack-dashboard -- webpack-dev-server --config ./client/etc/webpack.client.development.config.js --env.NODE_ENV=development",
+    "server": "nodemon ./server/index",
+    "serverpp": "nodemon --exec './node_modules/.bin/nodejs-dashboard' node ./server/etc/dashboard.tool",
     "server-test": "mocha --exit -- ./server/test/",
-    "todo-finder": "node ./shared/etc/todo-finder",
-    "update-jsdoc": "jsdoc -c ./shared/etc/jsdoc.config.json",
-    "open-jsdoc": "xdg-open ./shared/doc/jsdoc/index.html"
+    "util-todo-finder": "node ./shared/etc/todo-finder",
+    "jsdoc-update": "jsdoc -c ./shared/etc/jsdoc.config.json",
+    "jsdoc-open": "xdg-open ./shared/doc/jsdoc/index.html"
   },
   "repository": {
     "type": "git",
